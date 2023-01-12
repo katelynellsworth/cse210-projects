@@ -27,13 +27,12 @@ class Program
         }
 
         int len = numbers.Count;
-        int average = sum / len;
+        float average = ((float)sum) / len;
         
-        int max = 0;
+        int max = numbers[0];
 
         foreach (int num in numbers)
         {
-            Console.WriteLine(num);
             if (max < num)
             {
                 max = num;
