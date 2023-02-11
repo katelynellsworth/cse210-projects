@@ -22,20 +22,8 @@ class Reference
     {
         return $"{_book} {_chapter}:{_verse}";
     }
-        public string formatReferenceWithEndVerse()
+    public string FormatReferenceWithEndVerse()
     {
         return $"{_book} {_chapter}:{_verse}-{_endVerse}";
     }
 }
-
-
-
-
-    // private string CaptilizeBook()
-    // {
-    //     char[] bookAsChar = _book.ToCharArray();
-    //     bookAsChar[0] = char.ToUpper(_book[0]);
-    //     _book = bookAsChar.ToString();
-
-    //     return _book;
-    // }
