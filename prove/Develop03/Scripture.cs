@@ -91,21 +91,3 @@ class Scripture
         return blank;
     }
 }
-
-
-
-
-
-    // private string CapitilizeFirstWord()
-    // {
-    //     string[] words = _scripture.Split(' ');
-    //     string firstWord = words[0];
-    //     char[] firstWordAsChars = firstWord.ToCharArray();
-    //     firstWordAsChars[0] = char.ToUpper(firstWord[0]);
-
-    //     firstWord = firstWordAsChars.ToString();
-    //     words[0] = firstWord;
-    //     _scripture = words.ToString();
-
-    //     return _scripture;
-    // }
