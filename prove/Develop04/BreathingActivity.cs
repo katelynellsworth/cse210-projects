@@ -9,18 +9,29 @@ public class BreathingActivity : Activity
     }
     override public void RunActivity()
     {
+        Console.Clear();
+
         base.RunBeggining();
         int seconds = GetSecondsForActivity();
 
-        while (seconds <= 0)
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(seconds);
+
+        DateTime currentTime = DateTime.Now;
+
+        while (currentTime < futureTime)
         {
             Console.Write(_breatheIn);
             CountdownNumbers(4);
+            Console.WriteLine("");
+            Console.WriteLine("");
 
             Console.Write(_breatheOut);
             CountdownNumbers(8);
+            Console.WriteLine("");
+            Console.WriteLine("");
 
-            seconds -= 12;
+            currentTime = DateTime.Now;
         }
         
         base.RunEnding();

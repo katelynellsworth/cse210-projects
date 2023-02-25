@@ -49,10 +49,12 @@ public class ReflectingActivity : Activity
     private string RandomQuestion()
     {
         Random random = new Random();
-        int rnd = random.Next(0, _questions.Count());
+        int rnd = random.Next(0, _availableQuestionsIndex.Count());
 
         int indexForQuestion = _availableQuestionsIndex[rnd];
         string question = _questions[indexForQuestion];
+
+        _availableQuestionsIndex.RemoveAt(rnd);
 
         return question;
     }
@@ -73,10 +75,12 @@ public class ReflectingActivity : Activity
         int seconds = GetSecondsForActivity();
 
         Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine("");
         string prompt = RandomPrompt();
         Console.WriteLine($"----{prompt}----");
+        Console.WriteLine("");
         Console.WriteLine("When you have something in mind, press enter to continue.");
-        Console.Write("");
+        Console.ReadLine();
 
         Console.WriteLine("");
         Console.WriteLine("Now ponder each of the following questions as they relate to this experience.");
@@ -85,19 +89,23 @@ public class ReflectingActivity : Activity
 
         Console.Clear();
 
-        while (seconds <= 0)
-        {
-            Console.Write(RandomQuestion());
-            CountdownNumbers(10);
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(seconds);
 
-            if (_availableQuestionsIndex.Count() <= 0)
+        DateTime currentTime = DateTime.Now;
+
+        while (currentTime < futureTime)
+        {
+            Console.Write($"> {RandomQuestion()}");
+            SpinnerToBlank(10);
+            Console.WriteLine("");
+
+            if (_availableQuestionsIndex.Count() == 0)
             {
-                seconds = 0;
+                _availableQuestionsIndex = CreateAvailableQuestionIndex();
             }
-            else if (_availableQuestionsIndex.Count() > 0)
-            {
-                seconds -= 10;
-            }
+            
+            currentTime = DateTime.Now;
         }
 
         base.RunEnding();

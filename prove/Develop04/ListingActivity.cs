@@ -27,17 +27,25 @@ public class ListingActivity : Activity
         Console.WriteLine($"----{RandomPrompt()}----");
         Console.Write("You may begin in: ");
         CountdownNumbers(5);
+        Console.WriteLine("");
 
-        while (seconds <= 0)
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(seconds);
+
+        DateTime currentTime = DateTime.Now;
+
+        while (currentTime < futureTime)
         {
             Console.Write("> ");
+            Console.ReadLine();
 
             count += 1;
 
-            seconds -= 5;
+            currentTime = DateTime.Now;
         }
 
         Console.WriteLine($"You listed {count} items!");
+        Console.WriteLine("");
         
         base.RunEnding();
     }

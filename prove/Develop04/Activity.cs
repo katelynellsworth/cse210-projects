@@ -27,8 +27,9 @@ public class Activity
 
         Console.WriteLine("Get Ready...");
         SpinnerToBlank(5);
+        Console.WriteLine("");
     }
-    private void DisplayStartingMessage()
+    private int DisplayStartingMessage()
     {
         Console.WriteLine(_startingMessage);
         Console.WriteLine("");
@@ -37,6 +38,9 @@ public class Activity
         Console.WriteLine("");
 
         _secondsForActivity = AskForCount();
+        _endMessage = ($"You have completed another {_secondsForActivity} seconds of the {_activityName}.");
+
+        return _secondsForActivity;
     }
     private int AskForCount()
     {
@@ -56,10 +60,13 @@ public class Activity
     {
         Console.WriteLine("Well Done!!");
         SpinnerToBlank(10);
+        Console.WriteLine("");
+
         Console.WriteLine(_endMessage);
         SpinnerToBlank(10);
+        Console.WriteLine("");
     }
-    private void SpinnerToBlank(int timeToSpin)
+    public void SpinnerToBlank(int timeToSpin)
     {
         int count = 0;
 
@@ -101,5 +108,10 @@ public class Activity
     public int GetSecondsForActivity()
     {
         return _secondsForActivity;
+    }
+    public DateTime GetTime()
+    {
+        DateTime startTime = DateTime.Now;
+        return startTime;
     }
 }
