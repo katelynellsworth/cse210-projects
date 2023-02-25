@@ -14,13 +14,10 @@ public class Activity
         _description = description;
         _endMessage = ($"You have completed another {_secondsForActivity} seconds of the {_activityName}.");
     }
-    private int AskForCount()
+    public virtual void RunActivity()
     {
-        Console.Write(_countQuestion);
-        string userInput = Console.ReadLine();
-        int seconds = int.Parse(userInput);
-
-        return seconds;
+        RunBeggining();
+        RunEnding();
     }
     protected void RunBeggining()
     {
@@ -31,17 +28,6 @@ public class Activity
         Console.WriteLine("Get Ready...");
         SpinnerToBlank(5);
     }
-    protected void RunEnding()
-    {
-        DisplayEndingMessage();
-
-        Console.Clear();
-    }
-    public virtual void RunActivity()
-    {
-        RunBeggining();
-        RunEnding();
-    }
     private void DisplayStartingMessage()
     {
         Console.WriteLine(_startingMessage);
@@ -49,8 +35,22 @@ public class Activity
 
         Console.WriteLine(_description);
         Console.WriteLine("");
-        
+
         _secondsForActivity = AskForCount();
+    }
+    private int AskForCount()
+    {
+        Console.Write(_countQuestion);
+        string userInput = Console.ReadLine();
+        int seconds = int.Parse(userInput);
+
+        return seconds;
+    }
+    protected void RunEnding()
+    {
+        DisplayEndingMessage();
+
+        Console.Clear();
     }
     private void DisplayEndingMessage()
     {
