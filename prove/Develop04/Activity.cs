@@ -45,7 +45,11 @@ public class Activity
     private void DisplayStartingMessage()
     {
         Console.WriteLine(_startingMessage);
+        Console.WriteLine("");
+
         Console.WriteLine(_description);
+        Console.WriteLine("");
+        
         _secondsForActivity = AskForCount();
     }
     private void DisplayEndingMessage()
