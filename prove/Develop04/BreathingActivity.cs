@@ -17,7 +17,7 @@ public class BreathingActivity : Activity
             Console.Write(_breatheIn);
             CountdownNumbers(4);
 
-            Console.Write(_breatheIn);
+            Console.Write(_breatheOut);
             CountdownNumbers(8);
 
             seconds -= 12;
