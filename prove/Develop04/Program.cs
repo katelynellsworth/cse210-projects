@@ -8,6 +8,8 @@ class Program
 
         while (userInput != "4")
         {
+            Console.Clear();
+
             Console.WriteLine("Menu options:");
             Console.WriteLine("1. Start breathing activity");
             Console.WriteLine("2. Start reflecting activity");
@@ -18,14 +20,20 @@ class Program
             userInput = Console.ReadLine();
 
             if (userInput == "1"){
+                Console.Clear();
+
                 BreathingActivity breathingActivity = new BreathingActivity();
                 breathingActivity.RunActivity();
             }
             if (userInput == "2"){
+                Console.Clear();
+
                 ReflectingActivity breathingActivity = new ReflectingActivity();
                 breathingActivity.RunActivity();
             }
             if (userInput == "3"){
+                Console.Clear();
+                
                 ListingActivity breathingActivity = new ListingActivity();
                 breathingActivity.RunActivity();
             }
