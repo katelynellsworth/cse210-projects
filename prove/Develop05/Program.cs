@@ -8,11 +8,12 @@ class Program
         List<Goal> _goals = new List<Goal>();
 
         string userInput = "1";
+        int totalPoints = 0;
 
         while (userInput != "6")
         {
             Console.WriteLine("");
-            Console.WriteLine("You have 0 points.");
+            Console.WriteLine($"You have {totalPoints} points.");
             Console.WriteLine("");
 
             Console.WriteLine("Menu Options:");
@@ -86,18 +87,27 @@ class Program
             }
             else if (userInput == "5")
             {
-                var i = 0;
+                var i = 1;
                 var count = 1;
                 foreach (Goal goal in _goals)
                 {
                     string display = $"{count}.{goal.DisplayGoal()}";
+                    Console.WriteLine(display);
 
                     count ++;
-                    i ++;
                 }
                 Console.Write("Which goal did you accomplish? ");
                 string userNum = Console.ReadLine();
                 int num = Int32.Parse(userNum);
+
+                foreach (Goal goal in _goals)
+                {
+                    if (i == num)
+                    {
+                        goal.RecordEvent();
+                    }
+                    i++;
+                }
             }
             else if (userInput == "6")
             {
@@ -119,7 +129,7 @@ class Program
     }
     private int CreateGoalPoints()
     {
-        Console.WriteLine("What is the amount of points associated with this goal? ");
+        Console.Write("What is the amount of points associated with this goal? ");
         string stringPoints = Console.ReadLine();
         int points = Int32.Parse(stringPoints);
         return points;
@@ -146,6 +156,7 @@ class Program
         foreach (Goal goal in _goals)
         {
             string display = $"{count}.{goal.DisplayGoal()}";
+            Console.WriteLine(display);
             count ++;
         }
     }

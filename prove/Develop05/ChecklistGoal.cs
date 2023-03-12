@@ -35,12 +35,28 @@ public class ChecklistGoal : Goal
         else
         {
             string goal = base.DisplayGoal();
-            return $"[ ] {goal} -- Currently completed: {_timesCompleted}/{_timesToComplete}";
+            return $"{goal} -- Currently completed: {_timesCompleted}/{_timesToComplete}";
         }
     }
     public override string SaveToFile()
     {
         return $"Checklist Goal_{GetName()}_{GetDescription()}_{GetPoints()}_{_bonus}_{_timesToComplete}_{_timesCompleted}";
+    }
+    public override int RecordEvent(int totalPoints)
+    {
+        _timesCompleted ++;
+
+        int currentPoints = totalPoints + GetPoints();
+
+        if (_timesCompleted == _timesToComplete)
+        {
+            currentPoints += _bonus;
+            return currentPoints;
+        }
+        else
+        {
+            return currentPoints;
+        }
     }
 
 

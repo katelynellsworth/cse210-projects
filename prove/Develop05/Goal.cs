@@ -3,6 +3,7 @@ public class Goal
     private string _name = "";
     private string _description = "";
     private int _points = 0;
+    private string _complete = "false";
     public Goal(string name, string description, int points)
     {
         _name = name;
@@ -37,14 +38,24 @@ public class Goal
     }
     public virtual string DisplayGoal()
     {
-        return $"[ ] {_name} ({_description})";
+        if (_complete == "false")
+        {
+            return $"[ ] {_name} ({_description})";
+        }
+        else 
+        {
+            return $"[x] {_name} ({_description})";
+        }
     }
     public virtual string SaveToFile()
     {
         return $"[ ] {_name} ({_description})";
     }
-    public virtual void RecordEvent()
+    public virtual int RecordEvent(int totalPoints)
     {
-        
+        _complete = "true";
+
+        int currentPoints = totalPoints + _points;
+        return currentPoints;
     }
 }

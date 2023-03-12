@@ -1,5 +1,6 @@
 public class EternalGoal : Goal
 {
+    private string _complete = "false";
     public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
     }
@@ -11,5 +12,10 @@ public class EternalGoal : Goal
     {
         return $"Eternal Goal_{GetName()}_{GetDescription()}_{GetPoints()}";
     }
-    
+    public override int RecordEvent(int totalPoints)
+    {
+        int currentPoints = totalPoints + GetPoints();
+        return currentPoints;
+    }
+
 }
