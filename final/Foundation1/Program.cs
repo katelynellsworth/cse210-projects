@@ -7,6 +7,8 @@ class Program
         Console.WriteLine("Abstration with YouTube Videos!");
         Console.WriteLine("");
 
+        List<Video> videos = new List<Video>();
+
         List<Comment> catComments = new List<Comment>();
         Comment catcomment1 = new Comment("Purrtastic", "The cats are so Cute!<3");
         Comment catcomment2 = new Comment("Fur for Me", "I adore white cats the most.");
@@ -15,7 +17,7 @@ class Program
         catComments.Add(catcomment2);
         catComments.Add(catcomment3);
         Video video1 = new Video("Cat Video", "Cat Man", 120, catComments);
-        video1.DisplayVideo();
+        videos.Add(video1);
 
         List<Comment> dogComments = new List<Comment>();
         Comment dogcomment1 = new Comment("Ruffkins", "The way he talks back at the end of the video is my favorite.");
@@ -27,7 +29,7 @@ class Program
         dogComments.Add(dogcomment3);
         dogComments.Add(dogcomment4);
         Video video2 = new Video("Dog Video", "Dog World", 180, dogComments);
-        video2.DisplayVideo();
+        videos.Add(video2);
 
         List<Comment> bunnyComments = new List<Comment>();
         Comment bunnycomment1 = new Comment("MY NAME IS FLUFFY", "The cats are so Cute!<3");
@@ -37,6 +39,11 @@ class Program
         bunnyComments.Add(bunnycomment2);
         bunnyComments.Add(bunnycomment3);
         Video video3 = new Video("Bunny Video", "Mr. Hop", 60, bunnyComments);
-        video3.DisplayVideo();
+        videos.Add(video3);
+
+        foreach(var video in videos)
+        {
+            video.DisplayVideo();
+        }
     }
 }
