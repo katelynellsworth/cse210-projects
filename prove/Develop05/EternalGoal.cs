@@ -1,6 +1,5 @@
 public class EternalGoal : Goal
 {
-    private string _complete = "false";
     public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
     }

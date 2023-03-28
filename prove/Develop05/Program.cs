@@ -76,7 +76,7 @@ class Program
                 Console.Write("What is the filename for the goal file? ");
                 string filename = Console.ReadLine();
 
-                program.SaveFile(filename, _goals);
+                program.SaveFile(filename, _goals, totalPoints);
             }
             else if (userInput == "4")
             {
@@ -84,6 +84,7 @@ class Program
                 string filename = Console.ReadLine();
 
                 _goals = program.FileToList(filename);
+                totalPoints = program.PointsFromFile(filename);
             }
             else if (userInput == "5")
             {
@@ -104,7 +105,7 @@ class Program
                 {
                     if (i == num)
                     {
-                        goal.RecordEvent();
+                        totalPoints = goal.RecordEvent(totalPoints);
                     }
                     i++;
                 }
@@ -160,10 +161,12 @@ class Program
             count ++;
         }
     }
-    public void SaveFile(string filename, List<Goal> goals)
+    public void SaveFile(string filename, List<Goal> goals, int totalPoints)
     {
         using (StreamWriter outputFile = new StreamWriter(filename))
         {
+            outputFile.WriteLine(totalPoints);
+
             foreach (Goal goal in goals)
             {
                 outputFile.WriteLine(goal.SaveToFile());
@@ -175,6 +178,7 @@ class Program
         List<Goal> _goals = new List<Goal>();
 
         string[] lines = System.IO.File.ReadAllLines(filename);
+        lines = lines.Skip(1).ToArray();
         
         foreach (string line in lines)
         {
@@ -211,5 +215,12 @@ class Program
             }
         }
         return _goals;
+    }
+    private int PointsFromFile(string filename)
+    {
+        string line1 = System.IO.File.ReadLines(filename).First();
+        int points = Int32.Parse(line1);
+
+        return points;
     }
 }

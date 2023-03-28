@@ -29,8 +29,9 @@ public class ChecklistGoal : Goal
     {
         if (_timesCompleted >= _timesToComplete)
         {
-            string goal = base.DisplayGoal();
-            return $"[x] {goal} -- Currently completed: {_timesCompleted}/{_timesToComplete}";
+            string name = base.GetName();
+            string description = base.GetDescription();
+            return $"[x] {name} ({description}) -- Currently completed: {_timesCompleted}/{_timesToComplete}";
         }
         else
         {
